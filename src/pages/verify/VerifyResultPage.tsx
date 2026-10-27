@@ -205,11 +205,14 @@ function NumberedList({
   items,
   className = '',
   delay = 300,
+  inCard = false,
 }: {
   title: string
   items: { title?: string; body: string }[]
   className?: string
   delay?: number
+  /** Inside a bordered card: numbers line up with the heading and the last row has no divider */
+  inCard?: boolean
 }) {
   return (
     <div className={`flex flex-col gap-3 ${className}`}>
@@ -218,7 +221,9 @@ function NumberedList({
         {items.map((s, i) => (
           <li
             key={s.body}
-            className="flex gap-4 border-b-[0.5px] border-border-default px-4 py-3 transition-colors hover:bg-surface-brand-subtle animate-fade-up"
+            className={`flex gap-4 border-b-[0.5px] border-border-default py-3 transition-colors animate-fade-up ${
+              inCard ? 'items-center last:border-b-0 last:pb-0' : 'px-4 hover:bg-surface-brand-subtle'
+            }`}
             style={{ animationDelay: `${delay + i * 100}ms` }}
           >
             <span className="flex h-[38px] w-10 shrink-0 items-center justify-center rounded-full bg-brand-primary-light/60 text-[16px] font-medium text-brand-primary-dark">
@@ -250,17 +255,18 @@ export default function VerifyResultPage() {
     >
       <Hero outcome={outcome} />
       <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-start lg:gap-6">
-        {/* No product details when the product couldn't be verified */}
-        {outcome !== 'unable' && <ProductSummary />}
+        {/* Product details only for verified products (not for unable or flagged results) */}
+        {outcome === 'verified' && <ProductSummary />}
         {outcome === 'verified' && <AuthChecks />}
         {outcome === 'unable' && (
           // Centred, same width as the action buttons below, so the list and buttons read as one column
           <NumberedList title="What you can do" items={nextSteps} className="lg:mx-auto lg:w-[653px]" />
         )}
         {outcome === 'flagged' && (
-          <div className="flex flex-col gap-8 sm:flex-row sm:gap-4 lg:w-[536px] lg:shrink-0">
-            <NumberedList title="Why we flagged this product" items={flaggedReasons} className="flex-1" />
-            <NumberedList title="What you can do" items={flaggedActions} className="flex-1" delay={500} />
+          // One bordered card, left-aligned with the banner, holding both lists side by side
+          <div className="flex w-full flex-col gap-8 rounded-lg border-[0.5px] border-border-default bg-white p-4 sm:flex-row sm:gap-6 lg:gap-12 lg:p-6">
+            <NumberedList title="Why we flagged this product" items={flaggedReasons} className="flex-1" inCard />
+            <NumberedList title="What you can do" items={flaggedActions} className="flex-1" delay={500} inCard />
           </div>
         )}
       </div>
