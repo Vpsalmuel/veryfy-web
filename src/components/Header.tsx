@@ -40,7 +40,7 @@ export default function Header() {
           <Logo />
         </Link>
 
-        <nav aria-label="Main" className="hidden items-start gap-2 lg:flex">
+        <nav aria-label="Main" className="hidden items-start gap-3 lg:flex">
           {navItems.map((item) => (
             // `end` only on Home, so sub-pages (e.g. /learn/…, /alerts/…) keep their section active
             <NavLink key={item.to} to={item.to} end={item.to === '/'} className="flex flex-col items-center">
