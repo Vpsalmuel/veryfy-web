@@ -250,10 +250,12 @@ export default function VerifyResultPage() {
     >
       <Hero outcome={outcome} />
       <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-start lg:gap-6">
-        <ProductSummary />
+        {/* No product details when the product couldn't be verified */}
+        {outcome !== 'unable' && <ProductSummary />}
         {outcome === 'verified' && <AuthChecks />}
         {outcome === 'unable' && (
-          <NumberedList title="What you can do" items={nextSteps} className="lg:w-[536px] lg:shrink-0" />
+          // Centred, same width as the action buttons below, so the list and buttons read as one column
+          <NumberedList title="What you can do" items={nextSteps} className="lg:mx-auto lg:w-[653px]" />
         )}
         {outcome === 'flagged' && (
           <div className="flex flex-col gap-8 sm:flex-row sm:gap-4 lg:w-[536px] lg:shrink-0">
