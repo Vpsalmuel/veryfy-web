@@ -15,6 +15,8 @@
   --color-text-secondary: #666666;
   --color-text-disabled: #767676;
   --color-greyscale-500: #737373;
+  /* Muted text on dark (navy) backgrounds, e.g. footer column labels. Not in the Figma styles yet. */
+  --color-text-inverse-muted: #cccccc;
 
   --color-surface-default: #f3f3f3;
   --color-surface-brand-subtle: #f7f7ff;
