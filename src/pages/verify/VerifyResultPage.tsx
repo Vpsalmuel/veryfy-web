@@ -259,8 +259,10 @@ export default function VerifyResultPage() {
         {outcome === 'verified' && <ProductSummary />}
         {outcome === 'verified' && <AuthChecks />}
         {outcome === 'unable' && (
-          // Centred, same width as the action buttons below, so the list and buttons read as one column
-          <NumberedList title="What you can do" items={nextSteps} className="lg:mx-auto lg:w-[653px]" />
+          // Same bordered card as the flagged result, left-aligned with the banner
+          <div className="flex w-full flex-col rounded-lg border-[0.5px] border-border-default bg-white p-4 lg:p-6">
+            <NumberedList title="What you can do" items={nextSteps} inCard />
+          </div>
         )}
         {outcome === 'flagged' && (
           // One bordered card, left-aligned with the banner, holding both lists side by side
