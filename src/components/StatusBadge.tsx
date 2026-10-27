@@ -11,11 +11,15 @@ const config: Record<Status, { label: string; icon: string; className: string }>
   reviewed: { label: 'Reviewed', icon: checkIcon, className: 'bg-alert-success-bg text-alert-success' },
 }
 
-export default function StatusBadge({ status }: { status: Status }) {
+// "small" is the design-system Small badge (12px text, 16px icon); "compact" is the scaled-down list-card badge
+export default function StatusBadge({ status, size = 'compact' }: { status: Status; size?: 'compact' | 'small' }) {
   const c = config[status]
+  const small = size === 'small'
   return (
-    <span className={`inline-flex w-fit items-center gap-1 rounded-full px-2 py-1 text-[11px] leading-[1.4] ${c.className}`}>
-      <img alt="" src={c.icon} className="size-[15px]" />
+    <span
+      className={`inline-flex w-fit items-center gap-1 rounded-full px-2 py-1 leading-[1.4] ${small ? 'text-[12px]' : 'text-[11px]'} ${c.className}`}
+    >
+      <img alt="" src={c.icon} className={small ? 'size-4' : 'size-[15px]'} />
       {c.label}
     </span>
   )

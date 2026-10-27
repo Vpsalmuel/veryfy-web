@@ -32,29 +32,29 @@ function Meta({ items, className }: { items: string[]; className: string }) {
 function FeaturedAlert() {
   const a = featuredAlert
   return (
-    <article className="group flex animate-fade-up flex-col-reverse items-center gap-4 overflow-hidden rounded-[15px] transition-shadow duration-300 [animation-delay:200ms] hover:shadow-[0_16px_40px_-20px_rgba(1,11,79,0.35)] border-[0.5px] border-border-strong bg-white p-4 sm:flex-row lg:h-[297px] lg:w-[586px] lg:shrink-0">
-      <div className="flex flex-1 flex-col gap-[15px] sm:p-[22px] lg:w-[356px] lg:flex-none">
-        <StatusBadge status={a.status} />
+    <article className="group flex animate-fade-up flex-col-reverse items-center gap-4 overflow-hidden rounded-lg transition-shadow duration-300 [animation-delay:200ms] hover:shadow-[0_16px_40px_-20px_rgba(1,11,79,0.35)] border-[0.5px] border-border-strong bg-white p-4 sm:flex-row sm:gap-0 lg:h-[296px] lg:w-[584px] lg:shrink-0">
+      <div className="flex flex-1 flex-col gap-4 sm:p-6 lg:w-[356px] lg:flex-none">
+        <StatusBadge status={a.status} size="small" />
         <div className="flex flex-col gap-1 leading-[1.4]">
-          <h2 className="text-[18.5px] font-medium text-text-primary">{a.product}</h2>
-          <p className="text-[13px] text-text-secondary">
+          <h2 className="text-[18px] font-medium text-text-primary">{a.product}</h2>
+          <p className="text-[12px] text-text-secondary">
             {a.brand} · {a.category}
           </p>
         </div>
-        <p className="text-[15px] font-medium leading-[1.4] text-text-secondary">{a.summary}</p>
-        <p className="flex flex-wrap gap-x-2 text-[13px] leading-[1.4] lg:flex-nowrap lg:whitespace-nowrap">
+        <p className="text-[14px] leading-[1.4] text-text-secondary">{a.summary}</p>
+        <p className="flex flex-wrap gap-x-2 text-[12px] leading-[1.4] lg:flex-nowrap lg:whitespace-nowrap">
           <span className="text-text-secondary">Issued {a.date}</span>
           <span className="text-text-primary">{a.issuer}</span>
         </p>
-        <a href={a.announcementUrl} target="_blank" rel="noreferrer" className="flex w-fit items-center gap-1 text-[13px] text-brand-primary hover:underline">
+        <a href={a.announcementUrl} target="_blank" rel="noreferrer" className="flex w-fit items-center gap-1 text-[14px] text-brand-primary hover:underline">
           Read the official announcement
-          <img alt="" src={openInNew} className="size-[15px]" />
+          <img alt="" src={openInNew} className="size-4" />
         </a>
       </div>
       <img
         src={a.image}
         alt={a.product}
-        className="size-[197px] shrink-0 rounded-lg border-[0.5px] border-border-default object-cover transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1"
+        className="size-[196px] shrink-0 rounded-lg border-[0.5px] border-border-default object-cover transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1"
       />
     </article>
   )
@@ -111,23 +111,25 @@ export default function AlertsPage() {
   return (
     <>
       <section className="bg-white">
-        <div className="mx-auto w-full flex max-w-[1440px] flex-col gap-8 px-4 py-10 lg:min-h-[527px] lg:flex-row lg:items-center lg:gap-6 lg:px-24 lg:py-8">
+        <div className="mx-auto w-full flex max-w-[1440px] flex-col gap-8 px-4 py-10 lg:min-h-[527px] lg:flex-row lg:items-center lg:justify-between lg:gap-6 lg:px-24 lg:py-8">
           <div className="flex flex-1 flex-col gap-4 lg:max-w-[590px]">
             <p className="eyebrow text-text-secondary">Product alerts</p>
-            <h1 className="animate-fade-up text-[40px] font-bold leading-[1.2] text-brand-secondary [animation-delay:80ms] lg:text-[64px]">
-              Counterfeit product alerts and safety notice
-            </h1>
-            <p className="text-[16px] font-bold leading-[1.4] text-greyscale-500 lg:text-[20px]">
-              Get the latest warnings about counterfeit products, safety issues and recalls. Search, filter and stay
-              informed so you can make safer purchasing decisions.
-            </p>
+            <div className="flex flex-col gap-5">
+              <h1 className="animate-fade-up text-[40px] font-bold leading-[1.2] text-brand-secondary [animation-delay:80ms] lg:text-[64px]">
+                Counterfeit product alerts and safety notice
+              </h1>
+              <p className="text-[16px] font-medium leading-[1.4] text-greyscale-500 lg:text-[20px]">
+                Get the latest warnings about counterfeit products, safety issues and recalls. Search, filter and stay
+                informed so you can make safer purchasing decisions.
+              </p>
+            </div>
           </div>
           <FeaturedAlert />
         </div>
       </section>
 
-      <div className="mx-auto w-full flex max-w-[1440px] flex-col gap-8 px-4 pt-7 pb-16 lg:gap-12 lg:px-[95px]">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-[26px]">
+      <div className="mx-auto w-full flex max-w-[1440px] flex-col gap-8 px-4 pt-7 pb-16 lg:gap-12 lg:px-24">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6">
           <label className="flex h-14 items-center gap-3 rounded-2xl border border-border-default bg-white pr-2 pl-5 drop-shadow-[0_0_2.9px_rgba(66,156,253,0.3)] focus-within:border-2 focus-within:border-brand-primary lg:h-[73px] lg:w-[508px] lg:shrink-0">
             <img alt="" src={searchIcon} className="size-6" />
             <span className="sr-only">Search alerts</span>
