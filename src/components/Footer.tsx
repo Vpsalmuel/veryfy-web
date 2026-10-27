@@ -66,7 +66,8 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-8 lg:flex lg:flex-1">
             {columns.map((col) => (
               <div key={col.title} className="flex flex-col gap-3 lg:flex-1">
-                <p className="eyebrow">{col.title}</p>
+                {/* Labels step back in Brand/Primary Light so the links read first */}
+                <p className="eyebrow text-brand-primary-light">{col.title}</p>
                 {col.links.map((l) => (
                   <Link key={l.label} to={l.to} className="text-[14px] hover:underline">
                     {l.label}
