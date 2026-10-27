@@ -84,7 +84,7 @@ export default function TwoLayers() {
         }
       />
 
-      <div className="-mx-4 flex w-[calc(100%+2rem)] flex-col bg-white lg:mx-0 lg:min-h-[611px] lg:w-full lg:max-w-[1216px] lg:flex-row lg:gap-6 lg:bg-transparent">
+      <div className="-mx-4 flex w-[calc(100%+2rem)] flex-col bg-white lg:mx-0 lg:min-h-[582px] lg:w-full lg:max-w-[1216px] lg:flex-row lg:gap-6 lg:bg-transparent">
         <div className="flex flex-col border-border-default lg:w-1/2 lg:border-r-[0.5px]">
           <div className="border-b-[0.5px] border-border-default px-5 py-6 lg:flex-1">
             <Layer

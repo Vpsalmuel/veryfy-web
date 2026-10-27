@@ -1,6 +1,6 @@
 import Button from '../../components/Button'
 import StoreBadges from '../../components/StoreBadges'
-import appPhones from '../../assets/landing/app-phones.png'
+import appPreview from '../../assets/landing/app-preview.png'
 
 export default function AppCta() {
   return (
@@ -11,8 +11,9 @@ export default function AppCta() {
           <h2 className="text-[24px] font-semibold leading-[1.4] lg:text-[32px]">
             Veryfy, get alerts and report anytime, anywhere.
           </h2>
-          <p className="font-inter text-[16px] text-text-secondary">
-            Use the Veryfy mobile app or web for a faster, more seamless experience.
+          <p className="font-inter text-[16px] leading-[1.21] text-text-secondary">
+            Use the Veryfy mobile app or web for a faster, more <br className="hidden lg:block" />
+            seamless experience.
           </p>
         </div>
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-[22px]">
@@ -23,9 +24,9 @@ export default function AppCta() {
         </div>
       </div>
       <img
-        src={appPhones}
-        alt="Veryfy app screens: home with recent checks, and a ‘Product is genuine’ result"
-        className="aspect-[504/439] w-full max-w-[504px] self-center"
+        src={appPreview}
+        alt="Veryfy app screens: home with recent checks, and a ‘The Uni-Code matched’ verified result"
+        className="aspect-[591/394] w-full max-w-[591px] self-center rounded-lg object-cover"
       />
     </section>
   )

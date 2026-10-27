@@ -35,7 +35,7 @@ const tools = [
 
 export default function Tools() {
   return (
-    <section className="flex flex-col gap-6 py-6">
+    <section className="flex flex-col gap-6 py-6 lg:pb-[35px]">
       <SectionHeading
         overline="What you can do to verify"
         title="Simple tools for a safer market."

@@ -48,7 +48,7 @@ export default function Guides() {
           <Reveal key={g.title} delay={i * 120} className="flex flex-1">
           <Link
             to="/learn"
-            className="group lift relative flex h-[258px] flex-1 flex-col justify-end overflow-hidden rounded-sm border-[0.5px] border-border-default lg:h-[290px]"
+            className="group lift relative flex h-[258px] flex-1 flex-col justify-end overflow-hidden rounded-sm border-[0.5px] border-border-default lg:h-[291px]"
           >
             <img
               alt={g.alt}

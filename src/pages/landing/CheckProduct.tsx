@@ -4,8 +4,8 @@ import Button from '../../components/Button'
 import qrCode from '../../assets/landing/qr-code.svg'
 import cameraIcon from '../../assets/icons/camera.svg'
 
+// Figma handoff shows two search modes (Serial number active by default)
 const modes = [
-  { id: 'name', label: 'Product name', placeholder: 'Search for a product, brand or category (e.g Panadol, Indomie, ...)' },
   { id: 'serial', label: 'Serial number', placeholder: 'Enter the serial number printed on the pack' },
   { id: 'code', label: 'Barcode / QR', placeholder: 'Enter the barcode number or Uni-Code' },
 ] as const
@@ -13,7 +13,7 @@ const modes = [
 type Mode = (typeof modes)[number]['id']
 
 export default function CheckProduct() {
-  const [mode, setMode] = useState<Mode>('name')
+  const [mode, setMode] = useState<Mode>('serial')
   const [query, setQuery] = useState('')
   const [error, setError] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -53,7 +53,7 @@ export default function CheckProduct() {
           {/* Sliding white pill behind the selected tab */}
           <span
             aria-hidden
-            className="absolute top-1 bottom-1 left-1 w-[calc((100%-16px)/3)] rounded-full bg-white shadow-[0_0_5.8px_rgba(76,146,253,0.3)] transition-transform duration-300 ease-[var(--ease-out-soft)]"
+            className="absolute top-1 bottom-1 left-1 w-[calc((100%-12px)/2)] rounded-full bg-white shadow-[0_0_5.8px_rgba(76,146,253,0.3)] transition-transform duration-300 ease-[var(--ease-out-soft)]"
             style={{ transform: `translateX(calc(${activeIndex} * (100% + 4px)))` }}
           />
           {modes.map((m) => (
@@ -118,7 +118,9 @@ export default function CheckProduct() {
           />
         </div>
         <div className="flex flex-col gap-2 text-center font-bold leading-[1.4]">
-          <p className="text-[20px] text-text-primary">Scan with your camera</p>
+          <p className="text-[20px] text-text-primary">
+            Scan with your camera <span className="block text-[14px] text-text-disabled">(Mobile only)</span>
+          </p>
           <p className="text-[18px] text-text-secondary">Quickly check a product using its barcode or QR code</p>
         </div>
         <Button variant="secondary" to="/scan" icon={<img alt="" src={cameraIcon} className="size-5" />}>

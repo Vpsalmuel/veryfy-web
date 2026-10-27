@@ -11,7 +11,7 @@ export default function LandingPage() {
   return (
     <>
       <Hero />
-      <div className="mx-auto w-full flex max-w-[1512px] flex-col gap-14 px-4 pb-6 lg:gap-24 lg:px-24">
+      <div className="mx-auto w-full flex max-w-[1512px] flex-col gap-14 px-4 pb-6 lg:gap-24 lg:px-24 lg:pb-0">
         <Reveal>
           <CheckProduct />
         </Reveal>

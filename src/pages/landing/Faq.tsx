@@ -77,7 +77,7 @@ export default function Faq() {
         <div className="flex max-w-[788px] flex-col gap-[13px] leading-[1.4]">
           <p className="eyebrow text-white">FAQ</p>
           <h2 className="text-[24px] font-semibold text-white lg:text-[32px]">Frequently asked questions</h2>
-          <p className="text-[16px] font-medium text-brand-primary-light lg:max-w-[620px] lg:text-[18px]">
+          <p className="text-[16px] font-medium text-brand-primary-light lg:text-[18px]">
             Find answers to common questions about Veryfy, product verification and reporting counterfeit products.
           </p>
         </div>
