@@ -19,6 +19,8 @@ type ButtonProps = {
   variant?: Variant
   /** Show the trailing arrow_forward icon */
   arrow?: boolean
+  /** Swap the trailing arrow image (e.g. a heavier weight) */
+  arrowSrc?: string
   icon?: ReactNode
   to?: string
   className?: string
@@ -26,7 +28,7 @@ type ButtonProps = {
 } & Omit<ComponentProps<'button'>, 'className' | 'children'>
 
 /** Design-system Buttons (Primary / Secondary / Ghost). Renders a Link when `to` is set. */
-export default function Button({ variant = 'primary', arrow, icon, to, className = '', children, ...rest }: ButtonProps) {
+export default function Button({ variant = 'primary', arrow, arrowSrc, icon, to, className = '', children, ...rest }: ButtonProps) {
   const cls = `${base} ${styles[variant]} ${className}`
   const content = (
     <>
@@ -35,7 +37,7 @@ export default function Button({ variant = 'primary', arrow, icon, to, className
       {arrow && (
         <img
           alt=""
-          src={variant === 'primary' ? arrowWhite : arrowPrimary}
+          src={arrowSrc ?? (variant === 'primary' ? arrowWhite : arrowPrimary)}
           className="size-5 transition-transform duration-200 group-hover:translate-x-1"
         />
       )}

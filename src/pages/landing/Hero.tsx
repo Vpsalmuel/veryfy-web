@@ -3,6 +3,7 @@ import hero from '../../assets/landing/hero.png'
 import verifiedIcon from '../../assets/icons/verified.svg'
 import flagIcon from '../../assets/icons/flag.svg'
 import menuBookIcon from '../../assets/icons/menu-book.svg'
+import arrowBold from '../../assets/icons/arrow-forward-white-bold.svg'
 
 const highlights = [
   { icon: verifiedIcon, lines: ['Trusted', 'Information'] },
@@ -41,7 +42,7 @@ export default function Hero() {
         {/* Buttons + highlights share the highlight row's width on desktop */}
         <div className="contents lg:col-start-1 lg:row-start-3 lg:mt-12 lg:flex lg:w-fit lg:flex-col lg:gap-[34px]">
           <div className="order-last flex animate-fade-up flex-col gap-4 [animation-delay:380ms] lg:order-none lg:grid lg:grid-cols-[240px_240px]">
-            <Button to="/#check" arrow className="w-full">
+            <Button to="/#check" arrow arrowSrc={arrowBold} className="w-full">
               Verify a Product
             </Button>
             <Button to="/learn" variant="secondary" className="w-full">
