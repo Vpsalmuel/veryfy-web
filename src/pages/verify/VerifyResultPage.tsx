@@ -25,10 +25,9 @@ const flaggedActions = [
 
 const nextSteps = [
   {
-    title: 'Check the code and try again',
-    body: 'Make sure the code is entered correctly. Look out for similar characters (e.g. 0 and O, 1 and I).',
+    title: 'Check the code or scan again',
+    body: 'Make sure the code is correct (e.g., 0 vs O, 1 vs I), or rescan the QR code in good lighting.',
   },
-  { title: 'Scan the QR code again', body: 'Try scanning the code using your camera in good lighting.' },
   { title: 'Check the packaging', body: 'Look for signs of tampering or missing security features.' },
   { title: 'Report this product', body: 'Help us investigate by reporting this product.' },
 ]
