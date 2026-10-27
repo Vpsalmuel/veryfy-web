@@ -111,7 +111,7 @@ const heroes: Record<
     titleColor: 'text-alert-warning',
     icon: errorWhite44,
     title: 'Unable to verify this product',
-    body: "We couldn't confirm this product using the information provided. This could be due to an invalid code, unregistered product or potentially counterfeit item.",
+    body: "We couldn't confirm this product using the information provided. This could be due to an unstable internet connection, an invalid code, an unregistered product or a potentially counterfeit item.",
   },
   flagged: {
     tint: 'bg-alert-error/10',
