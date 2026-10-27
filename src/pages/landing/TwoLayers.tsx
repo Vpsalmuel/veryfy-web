@@ -84,8 +84,9 @@ export default function TwoLayers() {
         }
       />
 
-      <div className="-mx-4 flex w-[calc(100%+2rem)] flex-col bg-white lg:mx-0 lg:min-h-[582px] lg:w-full lg:max-w-[1216px] lg:flex-row lg:gap-6 lg:bg-transparent">
-        <div className="flex flex-col border-border-default lg:w-1/2 lg:border-r-[0.5px]">
+      {/* Desktop: two equal rows per column so the horizontal divider lines up and runs unbroken across both columns */}
+      <div className="-mx-4 flex w-[calc(100%+2rem)] flex-col bg-white lg:mx-0 lg:min-h-[582px] lg:w-full lg:max-w-[1216px] lg:flex-row lg:bg-transparent">
+        <div className="flex flex-col border-border-default lg:grid lg:w-1/2 lg:grid-rows-2 lg:border-r-[0.5px]">
           <div className="border-b-[0.5px] border-border-default px-5 py-6 lg:flex-1">
             <Layer
               tag="HiddenMark"
@@ -100,15 +101,15 @@ export default function TwoLayers() {
           />
         </div>
         {/* Mobile shows the Uni-Code text before its illustration */}
-        <div className="flex flex-col-reverse border-t-[8px] border-surface-brand-subtle lg:w-1/2 lg:flex-col lg:border-t-0">
-          <div className="border-b-[0.5px] border-border-default lg:flex lg:flex-1">
+        <div className="flex flex-col-reverse border-t-[8px] border-surface-brand-subtle lg:grid lg:w-1/2 lg:grid-rows-2 lg:border-t-0">
+          <div className="border-b-[0.5px] border-border-default lg:flex lg:pl-6">
             <Illustration
               src={tiltLabel}
               video={tiltLabelVideo}
               alt="Tilting the holographic security seal on a box reveals the Veryfy logo"
             />
           </div>
-          <div className="border-b-[0.5px] border-border-default px-5 py-6 lg:flex-1 lg:border-b-0">
+          <div className="border-b-[0.5px] border-border-default px-5 py-6 lg:border-b-0 lg:pl-11">
             <Layer tag="Unicode" line1="Reveal the code." body="Scan the QR code or enter the Uni-Code to verify the product." />
           </div>
         </div>
