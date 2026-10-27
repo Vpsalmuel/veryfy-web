@@ -42,22 +42,21 @@ export default function Header() {
 
         <nav aria-label="Main" className="hidden items-start gap-2 lg:flex">
           {navItems.map((item) => (
-            <NavLink key={item.to} to={item.to} end className="group flex flex-col items-center">
+            // `end` only on Home, so sub-pages (e.g. /learn/…, /alerts/…) keep their section active
+            <NavLink key={item.to} to={item.to} end={item.to === '/'} className="flex flex-col items-center">
               {({ isActive }) => {
                 const active = isActive || (item.to === '/' && pathname.startsWith('/check'))
                 return (
                   <>
                     <span
-                      className={`px-2 py-3 text-[14px] leading-[1.4] transition-colors duration-200 ${
-                        active ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
-                      }`}
+                      className={`px-2 py-3 text-[14px] leading-[1.4] ${active ? 'text-text-primary' : 'text-text-secondary'}`}
                     >
                       {item.label}
                     </span>
-                    {/* Underline grows from the centre on hover; stays full when active */}
+                    {/* Underline only marks the active page; it grows in when the page changes */}
                     <span
                       className={`h-[2px] w-full origin-center bg-brand-primary transition-transform duration-300 ease-out ${
-                        active ? 'scale-x-100' : 'scale-x-0 opacity-40 group-hover:scale-x-100'
+                        active ? 'scale-x-100' : 'scale-x-0'
                       }`}
                     />
                   </>
