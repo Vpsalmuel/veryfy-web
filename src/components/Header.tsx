@@ -6,7 +6,7 @@ import LanguageSelector from './LanguageSelector'
 import menuIcon from '../assets/icons/menu.svg'
 
 const navItems = [
-  { label: 'Verify a product', to: '/' },
+  { label: 'Home', to: '/' },
   { label: 'Alerts', to: '/alerts' },
   { label: 'Recalls', to: '/recalls' },
   { label: 'Report', to: '/report' },
