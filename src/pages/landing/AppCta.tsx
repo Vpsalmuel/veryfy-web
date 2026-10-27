@@ -1,4 +1,3 @@
-import Button from '../../components/Button'
 import StoreBadges from '../../components/StoreBadges'
 import appPreview from '../../assets/landing/app-preview.png'
 
@@ -18,9 +17,6 @@ export default function AppCta() {
         </div>
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-[22px]">
           <StoreBadges />
-          <Button variant="secondary" to="/check" arrow className="h-10!">
-            Open Web App
-          </Button>
         </div>
       </div>
       <img
