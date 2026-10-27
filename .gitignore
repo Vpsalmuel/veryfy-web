@@ -24,5 +24,6 @@ dist-ssr
 *.sw?
 
 # Local tooling
-.claude/
+.claude/*
+!.claude/skills/
 .vercel
