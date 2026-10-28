@@ -5,7 +5,8 @@ import Footer from './components/Footer'
 import LandingPage from './pages/LandingPage'
 import AlertsPage from './pages/AlertsPage'
 import RecallsPage from './pages/RecallsPage'
-import { AlertDetailPage, ReportStatusPage } from './pages/NoticeDetailPage'
+import { ReportStatusPage } from './pages/NoticeDetailPage'
+import CounterfeitDetailPage from './pages/CounterfeitDetailPage'
 import ComingSoon from './pages/ComingSoon'
 import CheckingPage from './pages/verify/CheckingPage'
 import VerifyResultPage from './pages/verify/VerifyResultPage'
@@ -43,7 +44,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/alerts" element={<AlertsPage />} />
-          <Route path="/alerts/:id" element={<AlertDetailPage />} />
+          <Route path="/alerts/:id" element={<CounterfeitDetailPage />} />
           <Route path="/reports/:reference" element={<ReportStatusPage />} />
           <Route path="/recalls" element={<RecallsPage />} />
           <Route path="/check" element={<CheckingPage />} />

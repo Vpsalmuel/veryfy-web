@@ -1,91 +1,43 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Button from '../components/Button'
 import Pagination from '../components/Pagination'
 import Reveal from '../components/Reveal'
-import StatusBadge, { type Status } from '../components/StatusBadge'
-import { alerts, featuredAlert, type Alert } from '../data/alerts'
+import CounterfeitCard, { Meta, StampedImage } from '../components/CounterfeitCard'
+import { NAFDAC_ALERTS_URL, categoryLabel, featuredCounterfeit, sortedCounterfeits, type Category } from '../data/counterfeits'
 import searchIcon from '../assets/icons/search.svg'
-import dotIcon from '../assets/icons/dot.svg'
 import openInNew from '../assets/icons/open-in-new-primary.svg'
 
-const filters: { id: string; label: string; statuses?: Status[] }[] = [
+// Every alert is a product NAFDAC has confirmed counterfeit, so the tabs filter by product type
+const filters: { id: string; label: string; category?: Category }[] = [
   { id: 'all', label: 'All' },
-  { id: 'review', label: 'Under review', statuses: ['under-review'] },
-  { id: 'active', label: 'Active alerts', statuses: ['counterfeit'] },
-  { id: 'closed', label: 'Closed', statuses: ['reviewed'] },
+  { id: 'medicine', label: 'Medicines', category: 'medicine' },
+  { id: 'food', label: 'Packaged food', category: 'food' },
 ]
 
-function Meta({ items, className }: { items: string[]; className: string }) {
-  return (
-    <p className={`flex flex-wrap items-center gap-[6px] leading-[1.4] ${className}`}>
-      {items.map((item, i) => (
-        <span key={item} className="flex items-center gap-[6px]">
-          {i > 0 && <img alt="" src={dotIcon} className="size-[3px]" />}
-          {item}
-        </span>
-      ))}
-    </p>
-  )
-}
-
 function FeaturedAlert() {
-  const a = featuredAlert
+  const a = featuredCounterfeit
   return (
     <article className="group flex animate-fade-up flex-col-reverse items-center gap-4 overflow-hidden rounded-lg transition-shadow duration-300 [animation-delay:200ms] hover:shadow-[0_16px_40px_-20px_rgba(1,11,79,0.35)] border-[0.5px] border-border-strong bg-white p-4 sm:flex-row sm:gap-0 lg:h-[296px] lg:w-[584px] lg:shrink-0">
       <div className="flex flex-1 flex-col gap-4 sm:p-6 lg:w-[356px] lg:flex-none">
-        <StatusBadge status={a.status} size="small" />
         <div className="flex flex-col gap-1 leading-[1.4]">
-          <h2 className="text-[18px] font-medium text-text-primary">{a.product}</h2>
-          <p className="text-[12px] text-text-secondary">
-            {a.brand} · {a.category}
-          </p>
+          <h2 className="text-[18px] font-medium text-text-primary">
+            <Link to={`/alerts/${a.id}`} className="hover:underline">
+              {a.product}
+            </Link>
+          </h2>
+          <Meta items={[a.brand, categoryLabel[a.category]]} className="text-[12px] text-text-secondary" />
         </div>
-        <p className="text-[14px] leading-[1.4] text-text-secondary">{a.summary}</p>
-        <p className="flex flex-wrap gap-x-2 text-[12px] leading-[1.4] lg:flex-nowrap lg:whitespace-nowrap">
-          <span className="text-text-secondary">Issued {a.date}</span>
-          <span className="text-text-primary">{a.issuer}</span>
+        <p className="line-clamp-3 text-[14px] leading-[1.4] text-text-secondary">{a.title}</p>
+        <p className="flex flex-wrap gap-x-2 text-[12px] leading-[1.4]">
+          <span className="text-text-secondary">Issued {a.confirmedOn}</span>
+          <span className="text-text-primary">NAFDAC Public Alert No. {a.alertNo}</span>
         </p>
-        <a href={a.announcementUrl} target="_blank" rel="noreferrer" className="flex w-fit items-center gap-1 text-[14px] text-brand-primary hover:underline">
+        <a href={a.noticeUrl} target="_blank" rel="noreferrer" className="flex w-fit items-center gap-1 text-[14px] text-brand-primary hover:underline">
           Read the official announcement
           <img alt="" src={openInNew} className="size-4" />
         </a>
       </div>
-      <img
-        src={a.image}
-        alt={a.product}
-        className="size-[196px] shrink-0 rounded-lg border-[0.5px] border-border-default object-cover transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1"
-      />
-    </article>
-  )
-}
-
-function AlertCard({ alert: a }: { alert: Alert }) {
-  return (
-    <article className="group lift flex h-full flex-col gap-4 rounded-lg bg-white px-4 py-5 sm:flex-row sm:items-end sm:gap-8 sm:px-6">
-      <div className="relative mx-auto size-[180px] shrink-0 overflow-hidden rounded-lg border-[0.5px] border-border-default bg-white sm:mx-0 sm:size-[226px]">
-        <img
-          src={a.image}
-          alt={a.product}
-          className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
-      <div className="flex flex-1 flex-col gap-[17px] self-stretch">
-        <StatusBadge status={a.status} />
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-[17px]">
-            <div>
-              <h3 className="text-[18px] font-medium leading-[1.4] text-black">{a.product}</h3>
-              <Meta items={[a.brand, a.category]} className="text-[12px] text-text-secondary" />
-            </div>
-            <p className="text-[14px] leading-[1.4] text-text-secondary">{a.summary}</p>
-            <Meta items={[a.date, a.issuer]} className="text-[10px] text-text-disabled" />
-          </div>
-          <Button variant="ghost" to={`/alerts/${a.id}`} arrow className="w-fit font-normal!">
-            View details
-          </Button>
-        </div>
-      </div>
+      <StampedImage item={a} stampWidth="65%" className="size-[196px] shrink-0" />
     </article>
   )
 }
@@ -99,10 +51,10 @@ export default function AlertsPage() {
   const results = useMemo(() => {
     const f = filters.find((x) => x.id === filter)
     const q = query.trim().toLowerCase()
-    return alerts.filter(
+    return sortedCounterfeits.filter(
       (a) =>
-        (!f?.statuses || f.statuses.includes(a.status)) &&
-        (!q || [a.product, a.brand, a.category].some((v) => v.toLowerCase().includes(q))),
+        (!f?.category || a.category === f.category) &&
+        (!q || [a.product, a.brand, categoryLabel[a.category], a.title].some((v) => v.toLowerCase().includes(q))),
     )
   }, [query, filter])
 
@@ -168,15 +120,15 @@ export default function AlertsPage() {
         <section className="flex flex-col gap-7">
           <div className="flex items-end justify-between">
             <h2 className="text-[24px] font-medium text-brand-secondary lg:text-[32px]">Most Recent</h2>
-            <Link to="/alerts" className="flex h-[52px] items-center px-4 text-[16px] font-medium text-brand-primary hover:underline">
+            <a href={NAFDAC_ALERTS_URL} target="_blank" rel="noreferrer" className="flex h-[52px] items-center px-4 text-[16px] font-medium text-brand-primary hover:underline">
               See More
-            </Link>
+            </a>
           </div>
           {visible.length > 0 ? (
             <div className="grid gap-6 md:grid-cols-2 lg:gap-x-[25px] lg:gap-y-[46px]">
               {visible.map((a, i) => (
                 <Reveal key={`${filter}-${query}-${page}-${a.id}`} delay={(i % 2) * 100}>
-                  <AlertCard alert={a} />
+                  <CounterfeitCard item={a} />
                 </Reveal>
               ))}
             </div>
@@ -200,6 +152,14 @@ export default function AlertsPage() {
               }}
             />
           </div>
+          <p className="text-[12px] leading-[1.4] text-text-secondary">
+            Source: alerts, product details and photos are from{' '}
+            <a href={NAFDAC_ALERTS_URL} target="_blank" rel="noreferrer" className="text-brand-primary hover:underline">
+              NAFDAC Recalls and Safety Alerts
+            </a>{' '}
+            (National Agency for Food and Drug Administration and Control). Veryfy shows publicly published notices and
+            does not certify authenticity.
+          </p>
         </section>
       </div>
     </>
