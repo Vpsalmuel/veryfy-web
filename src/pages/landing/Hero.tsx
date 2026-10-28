@@ -1,6 +1,5 @@
 import Button from '../../components/Button'
-import appleLogo from '../../assets/icons/app-store-apple.svg'
-import playLogo from '../../assets/icons/google-play-logo.svg'
+import downloadIcon from '../../assets/icons/download-primary.svg'
 import hero from '../../assets/landing/hero.png'
 import verifiedIcon from '../../assets/icons/verified.svg'
 import flagIcon from '../../assets/icons/flag.svg'
@@ -47,18 +46,15 @@ export default function Hero() {
             <Button to="/#check" arrow arrowSrc={arrowBold} className="w-full">
               Verify a Product
             </Button>
-            {/* One download CTA (Apple | Google Play logos) that takes people to the "Take Veryfy with you" store links */}
-            <a
-              href="#app"
-              className="group inline-flex h-[52px] w-full items-center justify-center gap-3 rounded-md bg-brand-primary/10 px-4 text-[14px] font-bold leading-[1.4] text-brand-primary transition-[background-color,transform] duration-200 hover:bg-brand-primary/15 active:scale-[0.97]"
+            {/* Design-system outlined (Secondary) button with Icons/download; goes to the "Take Veryfy with you" store links */}
+            <Button
+              to="/#app"
+              variant="secondary"
+              icon={<img alt="" src={downloadIcon} className="size-5" />}
+              className="w-full gap-[10px]!"
             >
-              <span aria-hidden className="flex items-center gap-3">
-                <span style={{ maskImage: `url("${appleLogo}")`, WebkitMaskImage: `url("${appleLogo}")` }} className="size-[18px] bg-current [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center]" />
-                <span className="h-5 w-px bg-current opacity-30" />
-                <span style={{ maskImage: `url("${playLogo}")`, WebkitMaskImage: `url("${playLogo}")` }} className="size-[17px] bg-current [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center]" />
-              </span>
               Download app
-            </a>
+            </Button>
           </div>
           <ul className="flex items-center justify-between py-[14px] lg:justify-start lg:gap-[59px]">
             {highlights.map((h, i) => (
