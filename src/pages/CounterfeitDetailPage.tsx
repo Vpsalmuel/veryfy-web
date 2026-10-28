@@ -299,17 +299,6 @@ export default function CounterfeitDetailPage() {
                 </li>
               ))}
             </ul>
-            <div className="flex flex-wrap gap-3">
-              <a href="tel:08001623322" className="inline-flex h-[52px] items-center rounded-md border border-brand-primary px-4 text-[16px] font-medium text-brand-primary hover:bg-brand-primary/5">
-                Call NAFDAC 0800-162-3322
-              </a>
-              <a href="mailto:sf.alert@nafdac.gov.ng" className="inline-flex h-[52px] items-center rounded-md border border-brand-primary px-4 text-[16px] font-medium text-brand-primary hover:bg-brand-primary/5">
-                Email sf.alert@nafdac.gov.ng
-              </a>
-              <Button to="/report" arrow className="text-[16px] font-medium!">
-                Report it on Veryfy
-              </Button>
-            </div>
           </section>
         </Reveal>
 
