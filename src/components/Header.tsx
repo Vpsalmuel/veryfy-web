@@ -7,11 +7,20 @@ import menuIcon from '../assets/icons/menu.svg'
 
 const navItems = [
   { label: 'Home', to: '/' },
-  { label: 'Alerts', to: '/alerts' },
+  { label: 'Alerts', to: '/alerts', dot: true },
   { label: 'Recalls', to: '/recalls' },
   { label: 'Report', to: '/report' },
   { label: 'Learn', to: '/learn' },
 ]
+
+/** Small red dot that flags new counterfeit alerts on the Alerts nav item. */
+function NotificationDot({ className = '' }: { className?: string }) {
+  return (
+    <span className={`inline-block size-1.5 rounded-full bg-alert-error ${className}`}>
+      <span className="sr-only">New alerts</span>
+    </span>
+  )
+}
 
 /** Web/Header (desktop, 80px) and Mobile/Header (64px + menu drawer). */
 export default function Header() {
@@ -49,9 +58,10 @@ export default function Header() {
                 return (
                   <>
                     <span
-                      className={`px-2 py-3 text-[14px] leading-[1.4] ${active ? 'text-text-primary' : 'text-text-secondary'}`}
+                      className={`relative px-2 py-3 text-[14px] leading-[1.4] ${active ? 'text-text-primary' : 'text-text-secondary'}`}
                     >
                       {item.label}
+                      {item.dot && <NotificationDot className="absolute top-[11px] right-[1px]" />}
                     </span>
                     {/* Underline only marks the active page; it grows in when the page changes */}
                     <span
@@ -103,12 +113,13 @@ export default function Header() {
               end
               style={{ animationDelay: `${i * 40}ms` }}
               className={({ isActive }) =>
-                `animate-fade-up rounded-md px-3 py-3 text-[16px] transition-colors active:bg-surface-default ${
+                `flex animate-fade-up items-center gap-2 rounded-md px-3 py-3 text-[16px] transition-colors active:bg-surface-default ${
                   isActive ? 'bg-surface-brand-subtle font-medium text-brand-primary' : 'text-text-primary'
                 }`
               }
             >
               {item.label}
+              {item.dot && <NotificationDot />}
             </NavLink>
           ))}
         </nav>
