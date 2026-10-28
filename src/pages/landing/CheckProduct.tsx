@@ -7,7 +7,7 @@ import cameraIcon from '../../assets/icons/camera.svg'
 // Figma handoff shows two search modes (Serial number active by default)
 const modes = [
   { id: 'serial', label: 'Serial number', placeholder: 'Enter the serial number printed on the pack' },
-  { id: 'code', label: 'Barcode / QR', placeholder: 'Enter the barcode number or Uni-Code' },
+  { id: 'code', label: 'Barcode', placeholder: 'Enter the barcode number or Uni-Code' },
 ] as const
 
 type Mode = (typeof modes)[number]['id']
