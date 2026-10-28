@@ -1,5 +1,6 @@
 import Button from '../../components/Button'
-import StoreBadges from '../../components/StoreBadges'
+import appleLogo from '../../assets/icons/app-store-apple.svg'
+import playLogo from '../../assets/icons/google-play-logo.svg'
 import hero from '../../assets/landing/hero.png'
 import verifiedIcon from '../../assets/icons/verified.svg'
 import flagIcon from '../../assets/icons/flag.svg'
@@ -32,18 +33,12 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Hero image with the app download badges underneath */}
-        <div className="flex flex-col items-center gap-6 lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:self-center">
-          <div className="relative aspect-[587/521] w-full animate-[fade-in_0.8s_ease-out_200ms_both] overflow-hidden rounded-sm lg:h-[521px] lg:w-[587px]">
-            <img
-              src={hero}
-              alt="Hand holding a phone scanning the QR code on a Veryfy-protected product box"
-              className="absolute inset-0 size-full animate-[drift_8s_ease-in-out_infinite] object-cover"
-            />
-          </div>
-          <div className="animate-fade-up [animation-delay:400ms]">
-            <StoreBadges />
-          </div>
+        <div className="relative aspect-[587/521] w-full animate-[fade-in_0.8s_ease-out_200ms_both] overflow-hidden rounded-sm lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:h-[521px] lg:w-[587px] lg:self-center">
+          <img
+            src={hero}
+            alt="Hand holding a phone scanning the QR code on a Veryfy-protected product box"
+            className="absolute inset-0 size-full animate-[drift_8s_ease-in-out_infinite] object-cover"
+          />
         </div>
 
         {/* Buttons + highlights share the highlight row's width on desktop */}
@@ -52,9 +47,18 @@ export default function Hero() {
             <Button to="/#check" arrow arrowSrc={arrowBold} className="w-full">
               Verify a Product
             </Button>
-            <Button to="/learn" variant="secondary" className="w-full">
-              Learn how it works
-            </Button>
+            {/* One download CTA (Apple | Google Play logos) that takes people to the "Take Veryfy with you" store links */}
+            <a
+              href="#app"
+              className="group inline-flex h-[52px] w-full items-center justify-center gap-3 rounded-md bg-brand-primary/10 px-4 text-[14px] font-bold leading-[1.4] text-brand-primary transition-[background-color,transform] duration-200 hover:bg-brand-primary/15 active:scale-[0.97]"
+            >
+              <span aria-hidden className="flex items-center gap-3">
+                <span style={{ maskImage: `url("${appleLogo}")`, WebkitMaskImage: `url("${appleLogo}")` }} className="size-[18px] bg-current [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center]" />
+                <span className="h-5 w-px bg-current opacity-30" />
+                <span style={{ maskImage: `url("${playLogo}")`, WebkitMaskImage: `url("${playLogo}")` }} className="size-[17px] bg-current [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center]" />
+              </span>
+              Download app
+            </a>
           </div>
           <ul className="flex items-center justify-between py-[14px] lg:justify-start lg:gap-[59px]">
             {highlights.map((h, i) => (
