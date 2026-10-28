@@ -553,10 +553,14 @@ export const counterfeits: Counterfeit[] = [
   },
 ]
 
+// Only alerts whose NAFDAC notice includes a product photo are shown on the site.
+// The others (Augmentin, Cerelac, PHESGO, Avastin K1830T71/H0375B01, Dostinex) stay above for when photos are available.
+const shown = counterfeits.filter((c) => c.cover)
+
 /** Newest first */
-export const sortedCounterfeits = [...counterfeits].sort((a, b) => b.confirmedIso.localeCompare(a.confirmedIso))
+export const sortedCounterfeits = [...shown].sort((a, b) => b.confirmedIso.localeCompare(a.confirmedIso))
 
-export const findCounterfeit = (id: string) => counterfeits.find((c) => c.id === id)
+export const findCounterfeit = (id: string) => shown.find((c) => c.id === id)
 
-/** Featured on the Alerts hero: the newest alert that has a photo */
-export const featuredCounterfeit = sortedCounterfeits.find((c) => c.cover) ?? sortedCounterfeits[0]
+/** Featured on the Alerts hero: the newest alert */
+export const featuredCounterfeit = sortedCounterfeits[0]
