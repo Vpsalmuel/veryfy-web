@@ -1,17 +1,8 @@
-import Button from '../../components/Button'
-import appleLogo from '../../assets/icons/app-store-apple.svg'
-import playLogo from '../../assets/icons/google-play-logo.svg'
+import VerifyDownloadButtons from '../../components/VerifyDownloadButtons'
 import hero from '../../assets/landing/hero.png'
 import verifiedIcon from '../../assets/icons/verified.svg'
 import flagIcon from '../../assets/icons/flag.svg'
 import menuBookIcon from '../../assets/icons/menu-book.svg'
-import arrowBold from '../../assets/icons/arrow-forward-white-bold.svg'
-
-/** Paints a store logo in the button's text colour (Brand Primary) by using the SVG as a mask. */
-const storeMark = (src: string) => {
-  const url = `url("${src}")`
-  return { maskImage: url, WebkitMaskImage: url, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' } as const
-}
 
 const highlights = [
   { icon: verifiedIcon, lines: ['Trusted', 'Information'] },
@@ -49,26 +40,8 @@ export default function Hero() {
 
         {/* Buttons + highlights share the highlight row's width on desktop */}
         <div className="contents lg:col-start-1 lg:row-start-3 lg:mt-12 lg:flex lg:w-fit lg:flex-col lg:gap-[34px]">
-          <div className="order-last flex animate-fade-up flex-col gap-4 [animation-delay:380ms] lg:order-none lg:grid lg:grid-cols-[240px_240px]">
-            <Button to="/#check" arrow arrowSrc={arrowBold} className="w-full">
-              Verify a Product
-            </Button>
-            {/* Design-system outlined (Secondary) button with the App Store and Google Play marks; goes to the "Take Veryfy with you" store links */}
-            <Button
-              to="/#app"
-              variant="secondary"
-              icon={
-                <span aria-hidden className="flex items-center gap-2">
-                  <span style={storeMark(appleLogo)} className="size-[18px] bg-current" />
-                  <span className="h-4 w-px bg-current opacity-30" />
-                  <span style={storeMark(playLogo)} className="size-[17px] bg-current" />
-                </span>
-              }
-              className="w-full gap-[10px]!"
-            >
-              Download app
-            </Button>
-          </div>
+          {/* "Download app" goes to the "Take Veryfy with you" section */}
+          <VerifyDownloadButtons downloadTo="/#app" className="order-last animate-fade-up [animation-delay:380ms] lg:order-none" />
           <ul className="flex items-center justify-between py-[14px] lg:justify-start lg:gap-[59px]">
             {highlights.map((h, i) => (
               <li

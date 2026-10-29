@@ -1,4 +1,7 @@
-import StoreBadges from '../../components/StoreBadges'
+import VerifyDownloadButtons from '../../components/VerifyDownloadButtons'
+
+// TODO: point this at the real store listing once the apps are published (was the store badges' link)
+const APP_DOWNLOAD_URL = '#'
 import appPreview from '../../assets/landing/app-preview.png'
 
 export default function AppCta() {
@@ -15,9 +18,7 @@ export default function AppCta() {
             seamless experience.
           </p>
         </div>
-        <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-[22px]">
-          <StoreBadges />
-        </div>
+        <VerifyDownloadButtons downloadTo={APP_DOWNLOAD_URL} />
       </div>
       <img
         src={appPreview}
