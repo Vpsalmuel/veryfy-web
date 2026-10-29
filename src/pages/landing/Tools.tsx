@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button'
 import SectionHeading from '../../components/SectionHeading'
 import Reveal from '../../components/Reveal'
@@ -37,6 +38,7 @@ const tools = [
 ]
 
 export default function Tools() {
+  const navigate = useNavigate()
   return (
     <section className="flex flex-col gap-6 py-6 lg:pb-[35px]">
       <SectionHeading
@@ -51,7 +53,14 @@ export default function Tools() {
       <div className="flex flex-col gap-6 lg:flex-row">
         {tools.map((t, i) => (
           <Reveal key={t.title} delay={i * 120} className="flex flex-1">
-          <article className="group lift relative flex flex-1 cursor-pointer flex-col overflow-hidden rounded-lg border-[0.5px] border-border-default">
+          {/* The whole card navigates on click; the CTA stays the real link for keyboard and screen readers */}
+          <article
+            onClick={(e) => {
+              if ((e.target as HTMLElement).closest('a')) return
+              navigate(t.to)
+            }}
+            className="group lift relative flex flex-1 cursor-pointer flex-col overflow-hidden rounded-lg border-[0.5px] border-border-default"
+          >
             <div className="relative h-[259px] overflow-hidden">
               <img
                 alt=""
@@ -65,12 +74,11 @@ export default function Tools() {
                 <h3 className="text-[20px] font-medium text-brand-secondary">{t.title}</h3>
                 <p className="text-[14px] text-text-secondary">{t.body}</p>
               </div>
-              {/* Stretched link: its ::after covers the whole card, so the entire card is clickable */}
               <Button
                 variant="ghost"
                 to={t.to}
                 arrow
-                className="w-fit px-0! hover:bg-transparent! group-hover:underline after:absolute after:inset-0 after:content-['']"
+                className="w-fit px-0! hover:bg-transparent! group-hover:underline"
               >
                 {t.cta}
               </Button>
